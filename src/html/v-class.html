@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    <div id="myapp">
+        <div v-show="showContent">
+            <div>{{content}}</div>
+        </div>
+        <div v-if="showContent">
+            <div>{{content}}</div>
+        </div>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#myapp',
+            data: {
+                content: 'Hello World!!',
+                showContent: false
+            }
+        });
+
+    </script>
+</body>
+</html>
