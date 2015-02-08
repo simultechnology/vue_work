@@ -3,15 +3,108 @@
 <head>
     <meta charset="utf-8">
     <title>Todo List</title>
+    <style>
+        body {
+            font-size: 13px;
+            font-family: Arial;
+        }
+        h1 {
+            font-size: 14px;
+            border-bottom: 1px solid #dddddd;
+            padding: 0 0 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 5px;
+        }
+        ul > li {
+            padding: 0 0 5px;
+            cursor: pointer;
+        }
+        input[type=text] {
+            padding: 4px;
+            border-radius: 4px;
+        }
+        .done {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+        .linkLike {
+            color: blue;
+            cursor: pointer;
+            font-weight: normal;
+        }
+    </style>
 </head>
 <body>
     <div id="myapp">
+        <h1>
+            ToDo List
+            <small>({{remaining}}/{{todos.length}})</small>
+            <span class="linkLike" v-on="click:purge">[purge]</span>
+        </h1>
+        <ul>
+            <li v-repeat="todos">
+                <span v-on="click: done = !done">
+                    <input type="checkbox" v-attr="checked: done">
+                    <span v-class="done: done">{{task}}</span>
+                </span>
+                <span class="linkLike" v-on="click: del($index)">[x]</span>
+            </li>
+        </ul>
+        <input type="text" v-model="newTask" placeholder="new task..." v-on="keyup:add | key enter">
     </div>
     <script src="js/vue.js"></script>
     <script>
         var vm = new Vue({
             el: '#myapp',
             data: {
+                newTask: '',
+                todos: [
+                    {task: 'task', done: false},
+                    {task: 'task', done: true},
+                    {task: 'task', done: false},
+                ]
+            },
+            computed: {
+                remaining: function () {
+                    var count = 0;
+                    for (var i = 0, l = this.todos.length; i < l; i++) {
+                        if (!this.todos[i].done) {
+                            count += 1;
+                        }
+                    }
+                    return count;
+                }
+
+            },
+            methods: {
+                add: function () {
+                    if (!this.newTask) {
+                        alert('please fill in any content!!')
+                        return;
+                    }
+                    console.log(this.todos.push({
+                        task: this.newTask,
+                        done: false
+                    }));
+                    this.newTask = ''
+                },
+                del: function (index) {
+                    console.log(index);
+                    if (confirm("are you sure?")) {
+                        this.todos.splice(index, 1);
+                    }
+                },
+                purge: function () {
+                    var i = this.todos.length;
+                    while (i--) {
+                        if (this.todos[i].done) {
+                            this.todos.splice(i, 1);
+                        }
+                    }
+                }
             }
         });
 
