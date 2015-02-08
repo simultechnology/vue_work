@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    <div id="myapp">
+        <p>
+            <input type="text" v-model="name">
+            {{name}}
+        </p>
+        <p>
+            <input type="checkbox" v-model="isAdmin">
+            {{isAdmin ? "admin" : "not admin"}}
+        </p>
+        <p>
+            <input type="radio" name="phone" v-model="phone" value="iPhone">
+            <input type="radio" name="phone" v-model="phone" value="android">
+            {{phone}}
+        </p>
+        <p>
+            <select v-model="city">
+                <option value="tokyo">tokyo</option>
+                <option value="kyoto">kyoto</option>
+                <option value="osaka">osaka</option>
+            </select>
+            {{city}}
+        </p>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#myapp',
+            data: {
+                name: 'ishikawa',
+                isAdmin: true,
+                phone: 'iPhone',
+                city: 'tokyo'
+            }
+        });
+
+        setTimeout(function () {
+            vm.$data.name = 'one!';
+        }, 2000)
+
+    </script>
+</body>
+</html>

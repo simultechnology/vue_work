@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    <div id="myapp">
+        <ul>
+            <li v-repeat="d1">{{$value}}</li>
+        </ul>
+        <ul>
+            <li v-repeat="d2">{{$key}} - {{$value}}</li>
+        </ul>
+        <ul>
+            <li v-repeat="d3">{{$index}}. {{name}} - {{score}}</li>
+        </ul>
+        <ul>
+            <li v-repeat="5">{{$index}}</li>
+        </ul>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#myapp',
+            data: {
+                d1: ['a', 'b'],
+                d2: {k1: 'v1', k2: 'v2'},
+                d3: [
+                    {name: 'ishikawa', score: 77},
+                    {name: 'taka', score: 100}
+                ]
+            }
+        });
+
+    </script>
+</body>
+</html>

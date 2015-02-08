@@ -3,14 +3,22 @@
 <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+        .red {
+            color: red;
+        }
+        .bold {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div id="myapp">
-        <div v-show="showContent">
-            <div>{{content}}</div>
+        <div v-class="myStyle">
+            {{content}}
         </div>
-        <div v-if="showContent">
-            <div>{{content}}</div>
+        <div v-class="red: isRed, bold: isBold">
+            {{content}}
         </div>
     </div>
     <script src="js/vue.min.js"></script>
@@ -19,7 +27,9 @@
             el: '#myapp',
             data: {
                 content: 'Hello World!!',
-                showContent: false
+                myStyle: 'bold',
+                isRed: true,
+                isBold: true
             }
         });
 

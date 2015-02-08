@@ -6,12 +6,19 @@
 </head>
 <body>
     <div id="myapp">
+        <input type="text" v-on="keyup:showLength | key enter" v-model="msg">
     </div>
     <script src="js/vue.min.js"></script>
     <script>
         var vm = new Vue({
             el: '#myapp',
             data: {
+                msg: ''
+            },
+            methods: {
+                showLength: function () {
+                    console.log(this.msg.length);
+                }
             }
         });
 

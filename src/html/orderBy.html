@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    <div id="myapp">
+        <input type="text" v-model="keyword">
+        <ul>
+            <li v-repeat="users | filterBy keyword | orderBy 'name'">
+                {{name}} - {{score}}
+            </li>
+        </ul>
+        <ul>
+            <li v-repeat="users | orderBy orderKey reverse">
+                {{name}} - {{score}}
+            </li>
+        </ul>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#myapp',
+            data: {
+                keyword: '',
+                users:[
+                    {name: 'ishikawa', score: 177},
+                    {name: 'tissi', score: 23},
+                    {name: 'aka', score: 55},
+                    {name: 'saka', score: 552}
+                ],
+                orderKey: 'score',
+                reverse: false
+            }
+        });
+
+    </script>
+</body>
+</html>

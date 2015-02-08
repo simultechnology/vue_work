@@ -6,12 +6,18 @@
 </head>
 <body>
     <div id="myapp">
+        <div v-text="msg | uppercase"></div>
+        <div v-text="msg | capitalize"></div>
+        <div v-text="price | currency ¥"></div>
+        <div>{{$data | json}}</div>
     </div>
     <script src="js/vue.min.js"></script>
     <script>
         var vm = new Vue({
             el: '#myapp',
             data: {
+                msg: 'hello',
+                price: 324444
             }
         });
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    <div id="myapp">
+        side: <input type="text" v-model="side">
+        area: {{area}}
+        <br>
+        side: <input type="text" v-model="side2">
+        area: {{area}}
+        area: <input type="text" v-model="area2">
+        area: {{area2}}
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#myapp',
+            data: {
+                side: 20,
+                side2: 20
+            },
+            computed: {
+                area: function () {
+                    return this.side * this.side;
+                },
+                area2: {
+                    get: function () {
+                        return this.side2 * this.side2;
+                    },
+                    set: function (v) {
+                        this.side2 = Math.sqrt(v);
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
